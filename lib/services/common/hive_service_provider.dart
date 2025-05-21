@@ -134,11 +134,15 @@ class HiveService {
     final userBox = Hive.box(AppConstants.userBox);
     Map<dynamic, dynamic>? defaultAddressData =
         userBox.get(AppConstants.defaultAddress);
+
+    if (defaultAddressData == null) {
+      return null;
+    }
+
     Map<String, dynamic> addressStringKeys =
         defaultAddressData!.cast<String, dynamic>();
     AddAddress address = AddAddress.fromMap(addressStringKeys);
     return address;
-    return null;
   }
 
   // Get user first open status

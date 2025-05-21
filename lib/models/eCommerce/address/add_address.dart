@@ -55,20 +55,21 @@ class AddAddress {
   factory AddAddress.fromMap(Map<String, dynamic> map) {
     return AddAddress(
       addressId: map['id'] as int,
-      name: map['name'] as String,
-      phone: map['phone'] as String,
-      area: map['area'] as String,
-      flatNo: map['flat_no'] as String,
-      postCode: map['post_code'] as String,
+      name: map['name'] == null ? "" : map['name'] as String,
+      phone: map['phone'] == null ? "" : map['phone'] as String,
+      area: map['area'] == null ? "" : map['area'] as String,
+      flatNo: map['flat_no'] == null ? "" : map['flat_no'] as String,
+      postCode: map['post_code'] == null ? "" : map['post_code'] as String,
       addressLine:
           map['address_line'] != null ? map['address_line'] as String : "",
       addressLine2:
           map['address_line2'] != null ? map['address_line2'] as String : "",
-      addressType: map['address_type'] as String,
+      addressType:
+          map['address_type'] != null ? map['address_type'] as String : "",
       country: map['country'] != null ? map['country'] as String : "",
       latitude: map['latitude'] != null ? map['latitude'] as String : null,
       longitude: map['longitude'] != null ? map['longitude'] as String : null,
-      isDefault: map['is_default'] as bool,
+      isDefault: map['is_default'] != null ? map['is_default'] as bool : false,
     );
   }
 
@@ -135,8 +136,10 @@ class DefaultAddressModel {
       area: map['area'] as String,
       flatNo: map['flat_no'] as String,
       postCode: map['post_code'] as String,
-      addressLine: map['address_line'] as String,
-      addressLine2: map['address_line2'] as String,
+      addressLine:
+          map['address_line'] == null ? "" : map['address_line'] as String,
+      addressLine2:
+          map['address_line2'] == null ? "" : map['address_line2'] as String,
       addressType: map['address_type'] as String,
       latitude: map['latitude'] != null ? map['latitude'] as String : null,
       longitude: map['longitude'] != null ? map['longitude'] as String : null,

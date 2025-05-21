@@ -17,7 +17,6 @@ class AddressController extends StateNotifier<bool> {
   List<AddAddress> get addressList => _addressList;
 
   Future<CommonResponse> addAddress({required AddAddress addAddress}) async {
-
     try {
       state = true;
       final response = await ref
@@ -67,8 +66,10 @@ class AddressController extends StateNotifier<bool> {
       state = true;
       final response = await ref.read(addressServiceProvider).getAddress();
       final List<dynamic> addressData = response.data['data']['addresses'];
+
       _addressList =
           addressData.map((address) => AddAddress.fromMap(address)).toList();
+
       if (_addressList.isEmpty) {
         ref.read(hiveServiceProvider).clearDefaultAddress();
       }
@@ -83,7 +84,6 @@ class AddressController extends StateNotifier<bool> {
       state = false;
       return CommonResponse(isSuccess: true, message: response.data['message']);
     } catch (error) {
-      debugPrint("Hello world"+error.toString());
       state = false;
       return CommonResponse(isSuccess: false, message: error.toString());
     }
